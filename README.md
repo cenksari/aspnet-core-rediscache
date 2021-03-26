@@ -1,5 +1,5 @@
-# rediscache
-Azure Redis Cache helpers
+# Azure Redis Cache helpers
+Azure Redis Cache helpers for your dotnet core projects.
 
 ### How to install
 
@@ -9,7 +9,7 @@ Azure Redis Cache helpers
 
 ### How to use
 
-Example controller:
+**Example controller:**
 
 ```csharp
 private readonly ICacheService CacheService;
@@ -44,7 +44,7 @@ public async Task<IActionResult> OrganizeCache()
 }
 ```
 
-Example model
+**Example model:**
 
 ```csharp
 public record Test
