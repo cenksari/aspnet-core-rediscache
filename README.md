@@ -5,8 +5,9 @@ Azure Redis Cache helpers for your dotnet core projects.
 
 1. Add `ICacheService.cs` and `CacheService.cs` to your project.
 2. Install nuget package `Microsoft.Extensions.Caching.Redis` package.
-3. Configure your `Startup.cs` file : Add connection string `services.AddDistributedRedisCache(options => options.Configuration = Configuration["RedisConnectionString"]);`
-4. Configure your `Startup.cs` file : Add `services.AddSingleton<ICacheService, CacheService>();`
+3. Configure your configuration file: Add `RedisConnectionString` key and value.
+4. Configure your `Startup.cs` file : Add connection string `services.AddDistributedRedisCache(options => options.Configuration = Configuration["RedisConnectionString"]);`
+5. Configure your `Startup.cs` file : Add `services.AddSingleton<ICacheService, CacheService>();`
 
 ### How to use
 
