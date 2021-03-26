@@ -22,7 +22,7 @@ public async Task<IActionResult> OrganizeCache()
   const string cacheName = "TestKey";
   
   // Get cache value
-  Test test = await CacheService.GetCache<Test>(cacheName);
+  Test test = await CacheService.GetCacheAsync<Test>(cacheName);
   
   // Cache value is null
   if (test == null)
@@ -35,7 +35,7 @@ public async Task<IActionResult> OrganizeCache()
     };
   
     // Set new value
-    test = await CacheService.SetCache(cacheName, testValue, 10);
+    test = await CacheService.SetCacheAsync(cacheName, testValue, 10);
   }
   
   ViewBag.Result = test;
@@ -52,4 +52,12 @@ public record Test
   public int Id { get; init; }
   public string Name { get; init; }
 }
+```
+
+**Removing cache key**
+
+Simply call
+
+```csharp
+await Cache.RemoveCacheAsync("cacheName");
 ```
