@@ -4,10 +4,10 @@
 
 	public interface ICacheService
 	{
-		Task<bool> RemoveCache(string key);
+		Task<bool> RemoveCacheAsync(string key);
 
-		Task<T> GetCache<T>(string key) where T : class;
+		Task<T> GetCacheAsync<T>(string key) where T : class;
 
-		Task<bool> SetCache<T>(string key, T value, int minutes) where T : class;
+		Task<bool> SetCacheAsync<T>(string key, T value, int minutes) where T : class;
 	}
 }

@@ -18,7 +18,7 @@
 		/// Get cache value.
 		/// </summary>
 		/// <param name="key">Cache key</param>
-		public async Task<T> GetCache<T>(string key) where T : class
+		public async Task<T> GetCacheAsync<T>(string key) where T : class
 		{
 			string cachedResponse = await Cache.GetStringAsync(key);
 
@@ -31,7 +31,7 @@
 		/// <param name="key">Cache key</param>
 		/// <param name="value">Cache value</param>
 		/// <param name="minutes">Minutes to keep</param>
-		public async Task<bool> SetCache<T>(string key, T value, int minutes) where T : class
+		public async Task<bool> SetCacheAsync<T>(string key, T value, int minutes) where T : class
 		{
 			string response = JsonSerializer.Serialize(value);
 
@@ -44,7 +44,7 @@
 		/// Remove cache value.
 		/// </summary>
 		/// <param name="key">Cache key</param>
-		public async Task<bool> RemoveCache(string key)
+		public async Task<bool> RemoveCacheAsync(string key)
 		{
 			await Cache.RemoveAsync(key);
 
