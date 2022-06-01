@@ -3,6 +3,7 @@
 	using Microsoft.Extensions.Caching.Distributed;
 	using System;
 	using System.Text.Json;
+	using System.Text.Json.Serialization;
 	using System.Threading.Tasks;
 
 	/// <summary>
@@ -13,6 +14,11 @@
 		public readonly IDistributedCache Cache;
 
 		public CacheService(IDistributedCache cache) => Cache = cache;
+
+		private readonly JsonSerializerOptions options = new()
+		{
+			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+		};
 
 		/// <summary>
 		/// Get cache value.
@@ -33,7 +39,7 @@
 		/// <param name="minutes">Minutes to keep</param>
 		public async Task<bool> SetCacheAsync<T>(string key, T value, int minutes) where T : class
 		{
-			string response = JsonSerializer.Serialize(value);
+			string response = JsonSerializer.Serialize(value, options);
 
 			await Cache.SetStringAsync(key, response, new DistributedCacheEntryOptions { SlidingExpiration = TimeSpan.FromMinutes(minutes) });
 
