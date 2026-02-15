@@ -1,13 +1,16 @@
-﻿namespace AzureRedisCache
+﻿namespace AzureRedisCache;
+
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+public interface ICacheService
 {
-	using System.Threading.Tasks;
+	Task RemoveCacheAsync(string key, CancellationToken cancellationToken);
 
-	public interface ICacheService
-	{
-		Task<bool> RemoveCacheAsync(string key);
+	Task<T?> GetCacheAsync<T>(string key, CancellationToken cancellationToken);
 
-		Task<T> GetCacheAsync<T>(string key) where T : class;
+	Task<T?> SetCacheAsync<T>(string key, T value, int mins, CancellationToken cancellationToken);
 
-		Task<bool> SetCacheAsync<T>(string key, T value, int minutes) where T : class;
-	}
+	Task<T?> GetOrCreateAsync<T>(int mins, string key, Func<CancellationToken, Task<T>> factory, CancellationToken cancellationToken);
 }
